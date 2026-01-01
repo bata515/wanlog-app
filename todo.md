@@ -94,3 +94,8 @@
 
 ## バグ修正
 - [x] ネストされた<a>タグエラー修正（Home、PostsList、PostDetail、TagsList、SearchResults、CreatePost）
+
+## ユーザーリクエスト修正
+- [x] 日本語対応（UIテキスト全置換）
+- [x] ログインページ実装
+- [x] ホーム画面への導線追加（ナビゲーション改善）

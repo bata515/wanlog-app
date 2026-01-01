@@ -4,6 +4,7 @@ import { Link, useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { useState } from "react";
 import { Heart, MessageCircle, Loader2 } from "lucide-react";
+import Navigation from "@/components/Navigation";
 
 export default function PostsList() {
   const { isAuthenticated } = useAuth();
@@ -17,17 +18,18 @@ export default function PostsList() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Navigation />
       {/* Header */}
       <div className="border-b border-border/20 py-12">
         <div className="container max-w-4xl mx-auto">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-display mb-2">Stories</h1>
-              <p className="text-muted-foreground">Discover heartwarming tales from our community</p>
+              <h1 className="text-display mb-2">ストーリー</h1>
+              <p className="text-muted-foreground">コミュニティからの心温まる物語を発見</p>
             </div>
             {isAuthenticated && (
               <Link href="/posts/create" className="btn-elegant-accent inline-block">
-                New Post
+                新規投稿
               </Link>
             )}
           </div>
@@ -43,10 +45,10 @@ export default function PostsList() {
             </div>
           ) : !postsData?.posts || postsData.posts.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-muted-foreground mb-4">No stories yet. Be the first to share!</p>
+              <p className="text-muted-foreground mb-4">まだストーリーがありません。最初にシェアしてみましょう！</p>
               {isAuthenticated && (
                 <Link href="/posts/create" className="btn-elegant-accent inline-block">
-                  Create Your First Post
+                  最初の投稿を作成
                 </Link>
               )}
             </div>
@@ -86,14 +88,14 @@ export default function PostsList() {
                 disabled={page === 1}
                 className="btn-elegant disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Previous
+                前へ
               </button>
-              <span className="text-label">Page {page}</span>
+              <span className="text-label">ページ {page}</span>
               <button
                 onClick={() => setPage(page + 1)}
                 className="btn-elegant"
               >
-                Next
+                次へ
               </button>
             </div>
           )}

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Heart, MessageCircle, Trash2, Edit, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import Navigation from "@/components/Navigation";
 
 export default function PostDetail({ params }: { params: { id: string } }) {
   const { user } = useAuth();
@@ -53,11 +54,12 @@ export default function PostDetail({ params }: { params: { id: string } }) {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Navigation />
       {/* Header */}
       <div className="border-b border-border/20 py-8">
         <div className="container max-w-3xl mx-auto">
           <Link href="/posts" className="text-label text-muted-foreground hover:text-foreground mb-4 inline-block">
-            ← Back to Stories
+            ← ストーリー一覧に戻る
           </Link>
           <div className="flex items-start justify-between">
             <div className="flex-1">
@@ -65,7 +67,7 @@ export default function PostDetail({ params }: { params: { id: string } }) {
               <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <span>{new Date(post.createdAt).toLocaleDateString()}</span>
                 {post.updatedAt !== post.createdAt && (
-                  <span>Updated {new Date(post.updatedAt).toLocaleDateString()}</span>
+                  <span>更新 {new Date(post.updatedAt).toLocaleDateString()}</span>
                 )}
               </div>
             </div>
@@ -76,7 +78,7 @@ export default function PostDetail({ params }: { params: { id: string } }) {
                 </Link>
                 <button
                   onClick={() => {
-                    if (confirm("Are you sure you want to delete this post?")) {
+                    if (confirm("この投稿を削除してもよろしいですか？")) {
                       deletePostMutation.mutate({ id: post.id });
                     }
                   }}
@@ -156,7 +158,7 @@ export default function PostDetail({ params }: { params: { id: string } }) {
 
           {/* Comments Section */}
           <div className="space-y-8">
-            <h2 className="text-headline">Comments</h2>
+            <h2 className="text-headline">コメント</h2>
 
             {/* Comment Form */}
             {user ? (
@@ -164,7 +166,7 @@ export default function PostDetail({ params }: { params: { id: string } }) {
                 <Textarea
                   value={commentText}
                   onChange={(e) => setCommentText(e.target.value)}
-                  placeholder="Share your thoughts..."
+                  placeholder="あなたの感想を共有してください..."
                   className="min-h-24"
                   maxLength={500}
                 />
@@ -187,15 +189,15 @@ export default function PostDetail({ params }: { params: { id: string } }) {
                     disabled={!commentText.trim() || isSubmittingComment}
                     className="btn-elegant-accent disabled:opacity-50"
                   >
-                    {isSubmittingComment ? "Posting..." : "Post Comment"}
+                    {isSubmittingComment ? "投稿中..." : "コメントを投稿"}
                   </button>
                 </div>
               </div>
             ) : (
               <div className="card-elegant text-center py-8">
-                <p className="text-muted-foreground mb-4">Sign in to leave a comment</p>
-                <Link href={`/login?redirect=/posts/${post.id}`}>
-                  <a className="btn-elegant-accent inline-block">Sign In</a>
+                <p className="text-muted-foreground mb-4">コメントを残すにはサインインしてください</p>
+                <Link href={`/login?redirect=/posts/${post.id}`} className="btn-elegant-accent inline-block">
+                  サインイン
                 </Link>
               </div>
             )}
@@ -224,7 +226,7 @@ export default function PostDetail({ params }: { params: { id: string } }) {
               </div>
             ) : (
               <div className="text-center py-8 text-muted-foreground">
-                <p>No comments yet. Be the first to share your thoughts!</p>
+                <p>まだコメントがありません。最初に感想を共有してみましょう！</p>
               </div>
             )}
           </div>

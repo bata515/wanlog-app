@@ -1,17 +1,19 @@
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { Loader2 } from "lucide-react";
+import Navigation from "@/components/Navigation";
 
 export default function TagsList() {
   const { data: tags, isLoading } = trpc.tags.list.useQuery();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Navigation />
       {/* Header */}
       <div className="border-b border-border/20 py-12">
         <div className="container max-w-4xl mx-auto">
-          <h1 className="text-display mb-2">Tags</h1>
-          <p className="text-muted-foreground">Explore stories by topic</p>
+          <h1 className="text-display mb-2">タグ</h1>
+          <p className="text-muted-foreground">トピック別にストーリーを閉覧</p>
         </div>
       </div>
 
@@ -24,7 +26,7 @@ export default function TagsList() {
             </div>
           ) : !tags || tags.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-muted-foreground">No tags yet. Create a post to add tags!</p>
+              <p className="text-muted-foreground">まだタグがありません。投稿を作成してタグを追加してください！</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -39,7 +41,7 @@ export default function TagsList() {
                       </span>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      {tag.usageCount === 1 ? "1 post" : `${tag.usageCount} posts`}
+                      {tag.usageCount === 1 ? "1件の投稿" : `${tag.usageCount}件の投稿`}
                     </p>
                 </Link>
               ))}

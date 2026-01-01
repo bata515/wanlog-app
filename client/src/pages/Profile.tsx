@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Upload, Loader2 } from "lucide-react";
+import Navigation from "@/components/Navigation";
 
 export default function Profile() {
   const { user, isAuthenticated } = useAuth();
@@ -62,11 +63,12 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Navigation />
       {/* Header */}
       <div className="border-b border-border/20 py-8">
         <div className="container max-w-3xl mx-auto">
-          <h1 className="text-display mb-2">My Profile</h1>
-          <p className="text-muted-foreground">Manage your account information</p>
+          <h1 className="text-display mb-2">マイプロフィール</h1>
+          <p className="text-muted-foreground">アカウント情報を管理</p>
         </div>
       </div>
 

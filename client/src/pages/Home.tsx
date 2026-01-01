@@ -17,20 +17,20 @@ export default function Home() {
           </Link>
           <div className="flex items-center gap-6">
             <Link href="/tags" className="text-label hover:text-accent transition-colors">
-              Tags
+              タグ
             </Link>
             {isAuthenticated ? (
               <>
                 <Link href="/dashboard" className="text-label hover:text-accent transition-colors">
-                  Dashboard
+                  ダッシュボード
                 </Link>
                 <Link href="/profile" className="text-label hover:text-accent transition-colors">
-                  Profile
+                  プロフィール
                 </Link>
               </>
             ) : (
               <a href={getLoginUrl()} className="btn-elegant-accent text-sm">
-                Sign In
+                ログイン
               </a>
             )}
           </div>
@@ -43,27 +43,27 @@ export default function Home() {
           <div className="space-y-8 text-center">
             <div className="space-y-4">
               <h1 className="text-display">
-                Celebrate Your
+                愛犬との
                 <br />
-                <span className="text-accent">Beloved Companion</span>
+                <span className="text-accent">大切な瞬間を記録</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Share the precious moments with your furry friend. A refined platform for dog lovers to document, celebrate, and connect.
+                愛犬との思い出を共有しましょう。犬好きのための洗練されたプラットフォーム。
               </p>
             </div>
 
             <div className="flex gap-4 justify-center pt-4">
               {isAuthenticated ? (
                 <Link href="/posts/create" className="btn-elegant-accent inline-block">
-                  Create Your First Post
+                  最初の投稿を作成
                 </Link>
               ) : (
                 <>
                   <a href={getLoginUrl()} className="btn-elegant-accent">
-                    Get Started
+                    はじめる
                   </a>
                   <Link href="/posts" className="btn-elegant inline-block">
-                    Explore Posts
+                    投稿を閲覧
                   </Link>
                 </>
               )}
@@ -75,23 +75,23 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="text-center space-y-3">
                 <Sparkles className="w-8 h-8 mx-auto text-accent" />
-                <h3 className="text-subheading">Elegant Stories</h3>
+                <h3 className="text-subheading">エレガントなストーリー</h3>
                 <p className="text-muted-foreground">
-                  Craft beautiful narratives about your dog's adventures and milestones.
+                  愛犬の冒険とマイルストーンについて美しい物語を作成します。
                 </p>
               </div>
               <div className="text-center space-y-3">
                 <Heart className="w-8 h-8 mx-auto text-accent" />
-                <h3 className="text-subheading">Connect & Share</h3>
+                <h3 className="text-subheading">つながる・共有する</h3>
                 <p className="text-muted-foreground">
-                  Engage with fellow dog enthusiasts through likes and thoughtful comments.
+                  犬好きな仲間とのいいねとコメントを通じて交流します。
                 </p>
               </div>
               <div className="text-center space-y-3">
                 <MessageCircle className="w-8 h-8 mx-auto text-accent" />
-                <h3 className="text-subheading">Community</h3>
+                <h3 className="text-subheading">コミュニティ</h3>
                 <p className="text-muted-foreground">
-                  Discover inspiring stories and build meaningful connections.
+                  インスピレーションを得られるストーリーを発見し、意味のあるつながりを構築します。
                 </p>
               </div>
             </div>
@@ -103,8 +103,8 @@ export default function Home() {
       <section className="section-spacing bg-card/50 border-y border-border/20">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-headline mb-2">Recent Stories</h2>
-            <p className="text-muted-foreground">Discover heartwarming tales from our community</p>
+            <h2 className="text-headline mb-2">最近のストーリー</h2>
+            <p className="text-muted-foreground">コミュニティからの心温まる物語を発見</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -113,9 +113,9 @@ export default function Home() {
                 <div className="aspect-video bg-gradient-to-br from-accent/20 to-accent/5 mb-4 flex items-center justify-center">
                   <Sparkles className="w-12 h-12 text-accent/30" />
                 </div>
-                <h3 className="text-subheading mb-2">Featured Story {i}</h3>
+                <h3 className="text-subheading mb-2">おすすめストーリー {i}</h3>
                 <p className="text-muted-foreground mb-4 line-clamp-2">
-                  A beautiful moment captured in time, waiting to be discovered by fellow dog lovers.
+                  時間に捉えられた美しい瞬間。犬好きな仲間に発見されるのを待っています。
                 </p>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
                   <span className="flex items-center gap-1">
@@ -131,7 +131,7 @@ export default function Home() {
 
           <div className="text-center mt-12">
             <Link href="/posts" className="btn-elegant inline-block">
-              View All Stories
+              すべてのストーリーを見る
             </Link>
           </div>
         </div>
@@ -140,13 +140,13 @@ export default function Home() {
       {/* CTA Section */}
       <section className="section-spacing">
         <div className="container max-w-2xl mx-auto text-center space-y-6">
-          <h2 className="text-headline">Ready to Share Your Story?</h2>
+          <h2 className="text-headline">あなたのストーリーをシェアする準備はできていますか？</h2>
           <p className="text-lg text-muted-foreground">
-            Join our community of dog lovers and start documenting your beloved companion's journey today.
+            犬好きなコミュニティに参加して、愛犬の旅を記録し始めましょう。
           </p>
           {!isAuthenticated && (
             <a href={getLoginUrl()} className="inline-block btn-elegant-accent">
-              Create Account
+              アカウント作成
             </a>
           )}
         </div>
@@ -159,33 +159,33 @@ export default function Home() {
             <div>
               <h4 className="text-label mb-4">WanLog</h4>
               <p className="text-sm text-muted-foreground">
-                A refined platform for celebrating your beloved companion.
+                愛犬を祝うための洗練されたプラットフォーム。
               </p>
             </div>
             <div>
-              <h4 className="text-label mb-4">Explore</h4>
+              <h4 className="text-label mb-4">探索</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/posts" className="text-muted-foreground hover:text-foreground transition-colors">Stories</Link></li>
-                <li><Link href="/tags" className="text-muted-foreground hover:text-foreground transition-colors">Tags</Link></li>
+                <li><Link href="/posts" className="text-muted-foreground hover:text-foreground transition-colors">ストーリー</Link></li>
+                <li><Link href="/tags" className="text-muted-foreground hover:text-foreground transition-colors">タグ</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-label mb-4">Community</h4>
+              <h4 className="text-label mb-4">コミュニティ</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Guidelines</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Support</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">ガイドライン</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">サポート</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-label mb-4">Legal</h4>
+              <h4 className="text-label mb-4">法的</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Privacy</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Terms</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">プライバシー</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">利用規約</a></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-border/20 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2026 WanLog. All rights reserved.</p>
+            <p>&copy; 2026 WanLog. すべての権利を保有しています。</p>
           </div>
         </div>
       </footer>

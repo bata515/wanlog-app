@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { useState, useEffect } from "react";
 import { Heart, MessageCircle, Loader2 } from "lucide-react";
+import Navigation from "@/components/Navigation";
 
 export default function SearchResults() {
   const [location] = useLocation();
@@ -21,13 +22,14 @@ export default function SearchResults() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Navigation />
       {/* Header */}
       <div className="border-b border-border/20 py-12">
         <div className="container max-w-4xl mx-auto">
-          <h1 className="text-display mb-2">Search Results</h1>
+          <h1 className="text-display mb-2">検索結果</h1>
           {query && (
             <p className="text-muted-foreground">
-              Found {results?.total || 0} result{results?.total !== 1 ? "s" : ""} for "{query}"
+              "{query}"の検索結果: {results?.total || 0}件
             </p>
           )}
         </div>
@@ -38,7 +40,7 @@ export default function SearchResults() {
         <div className="container max-w-4xl mx-auto">
           {!query ? (
             <div className="text-center py-12">
-              <p className="text-muted-foreground">Enter a search query to find stories</p>
+              <p className="text-muted-foreground">検索クエリを入力してストーリーを找してください</p>
             </div>
           ) : isLoading ? (
             <div className="flex items-center justify-center py-12">
@@ -46,8 +48,8 @@ export default function SearchResults() {
             </div>
           ) : !results?.posts || results.posts.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-muted-foreground mb-4">No stories found matching your search.</p>
-              <p className="text-sm text-muted-foreground">Try different keywords or browse by tags.</p>
+              <p className="text-muted-foreground mb-4">検索条件に一致するストーリーが見つかりません。</p>
+              <p className="text-sm text-muted-foreground">異なるキーワードを試したり、タグで閉覧してみてください。</p>
             </div>
           ) : (
             <div className="space-y-6">
@@ -85,14 +87,14 @@ export default function SearchResults() {
                 disabled={page === 1}
                 className="btn-elegant disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Previous
+                前へ
               </button>
-              <span className="text-label">Page {page}</span>
+              <span className="text-label">ページ {page}</span>
               <button
                 onClick={() => setPage(page + 1)}
                 className="btn-elegant"
               >
-                Next
+                次へ
               </button>
             </div>
           )}

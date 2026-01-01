@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Upload, X, Loader2 } from "lucide-react";
+import Navigation from "@/components/Navigation";
 
 export default function CreatePost() {
   const { user, isAuthenticated } = useAuth();
@@ -92,14 +93,15 @@ export default function CreatePost() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Navigation />
       {/* Header */}
       <div className="border-b border-border/20 py-8">
         <div className="container max-w-3xl mx-auto">
           <Link href="/posts" className="text-label text-muted-foreground hover:text-foreground mb-4 inline-block">
-            ← Back to Stories
+            ← ストーリー一覧に戻る
           </Link>
-          <h1 className="text-display mb-2">Create New Story</h1>
-          <p className="text-muted-foreground">Share a moment with your beloved companion</p>
+          <h1 className="text-display mb-2">新しいストーリーを作成</h1>
+          <p className="text-muted-foreground">愛犬との大切な瞬間をシェアしましょう</p>
         </div>
       </div>
 

@@ -11,12 +11,14 @@ import TagsList from "./pages/TagsList";
 import CreatePost from "./pages/CreatePost";
 import Profile from "./pages/Profile";
 import SearchResults from "./pages/SearchResults";
+import Login from "./pages/Login";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/login"} component={Login} />
       <Route path={"/posts"} component={PostsList} />
       <Route path={"/posts/create"} component={CreatePost} />
       <Route path={"/posts/:id"} component={PostDetail} />
