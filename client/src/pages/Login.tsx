@@ -36,14 +36,32 @@ export default function Login() {
               </p>
             </div>
 
-            {/* Login Button */}
-            <a
-              href={getLoginUrl()}
-              className="btn-elegant-accent w-full flex items-center justify-center gap-2 py-3"
-            >
-              <LogIn className="w-5 h-5" />
-              Manus でログイン
-            </a>
+            {/* Login Buttons */}
+            <div className="space-y-3">
+              <a
+                href={getLoginUrl()}
+                className="btn-elegant-accent w-full flex items-center justify-center gap-2 py-3"
+              >
+                <LogIn className="w-5 h-5" />
+                Manus でログイン
+              </a>
+              <a
+                href="/login/email"
+                className="btn-elegant w-full flex items-center justify-center gap-2 py-3"
+              >
+                メールでログイン
+              </a>
+            </div>
+            
+            {/* Register Link */}
+            <div className="text-center text-sm">
+              <p>
+                アカウントをお持ちでない方は
+                <a href="/register" className="text-accent hover:underline ml-1">
+                  こちらから登録
+                </a>
+              </p>
+            </div>
 
             {/* Features */}
             <div className="space-y-3 pt-6 border-t border-border/20">

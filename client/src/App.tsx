@@ -5,13 +5,15 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import PostsList from "./pages/PostsList";
 import PostDetail from "./pages/PostDetail";
 import TagsList from "./pages/TagsList";
 import CreatePost from "./pages/CreatePost";
 import Profile from "./pages/Profile";
 import SearchResults from "./pages/SearchResults";
-import Login from "./pages/Login";
+import EmailLogin from "./pages/EmailLogin";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -19,6 +21,8 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/login"} component={Login} />
+      <Route path={"/login/email"} component={EmailLogin} />
+      <Route path={"/register"} component={Register} />
       <Route path={"/posts"} component={PostsList} />
       <Route path={"/posts/create"} component={CreatePost} />
       <Route path={"/posts/:id"} component={PostDetail} />
