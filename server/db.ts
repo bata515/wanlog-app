@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { eq, desc, asc, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -89,4 +89,88 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+// User queries
+export async function getUserByUsername(username: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.username, username)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getUserByEmail(email: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.email, email)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function updateUserProfile(userId: number, data: { username?: string; bio?: string; profileImage?: string }) {
+  const db = await getDb();
+  if (!db) return undefined;
+  await db.update(users).set(data).where(eq(users.id, userId));
+  return db.select().from(users).where(eq(users.id, userId)).limit(1);
+}
+
+// Post queries
+export async function getPublishedPosts(limit: number, offset: number) {
+  const db = await getDb();
+  if (!db) return [];
+  const { posts: postsTable } = await import("../drizzle/schema");
+  return db.select().from(postsTable).where(eq(postsTable.status, "published")).orderBy(desc(postsTable.createdAt)).limit(limit).offset(offset);
+}
+
+export async function getPostById(postId: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const { posts: postsTable } = await import("../drizzle/schema");
+  const result = await db.select().from(postsTable).where(eq(postsTable.id, postId)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getUserPosts(userId: number, limit: number, offset: number) {
+  const db = await getDb();
+  if (!db) return [];
+  const { posts: postsTable } = await import("../drizzle/schema");
+  return db.select().from(postsTable).where(eq(postsTable.userId, userId)).orderBy(desc(postsTable.createdAt)).limit(limit).offset(offset);
+}
+
+// Tag queries
+export async function getTagByName(name: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const { tags: tagsTable } = await import("../drizzle/schema");
+  const result = await db.select().from(tagsTable).where(eq(tagsTable.name, name)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getAllTags() {
+  const db = await getDb();
+  if (!db) return [];
+  const { tags: tagsTable } = await import("../drizzle/schema");
+  return db.select().from(tagsTable).orderBy(desc(tagsTable.usageCount));
+}
+
+// Comment queries
+export async function getPostComments(postId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  const { comments: commentsTable } = await import("../drizzle/schema");
+  return db.select().from(commentsTable).where(eq(commentsTable.postId, postId)).orderBy(asc(commentsTable.createdAt));
+}
+
+// Like queries
+export async function getUserLike(postId: number, userId: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const { likes: likesTable } = await import("../drizzle/schema");
+  const result = await db.select().from(likesTable).where(and(eq(likesTable.postId, postId), eq(likesTable.userId, userId))).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+// Image queries
+export async function getPostImages(postId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  const { images: imagesTable } = await import("../drizzle/schema");
+  return db.select().from(imagesTable).where(eq(imagesTable.postId, postId)).orderBy(asc(imagesTable.order));
+}

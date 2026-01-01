@@ -5,12 +5,24 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import PostsList from "./pages/PostsList";
+import PostDetail from "./pages/PostDetail";
+import TagsList from "./pages/TagsList";
+import CreatePost from "./pages/CreatePost";
+import Profile from "./pages/Profile";
+import SearchResults from "./pages/SearchResults";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/posts"} component={PostsList} />
+      <Route path={"/posts/create"} component={CreatePost} />
+      <Route path={"/posts/:id"} component={PostDetail} />
+      <Route path={"/tags"} component={TagsList} />
+      <Route path={"/profile"} component={Profile} />
+      <Route path={"/search"} component={SearchResults} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
