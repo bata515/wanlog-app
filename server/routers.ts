@@ -216,15 +216,27 @@ export const appRouter = router({
         for (const tagName of input.tags) {
           let tag = await db.getTagByName(tagName);
           if (!tag) {
-            const tagResult = await dbInstance.insert(tags).values({
+            await dbInstance.insert(tags).values({
               name: tagName,
               usageCount: 1,
             });
-            tag = { id: (tagResult as any).insertId, name: tagName, usageCount: 1, createdAt: new Date() };
+            // Fetch the newly created tag
+            const createdTag = await dbInstance.select().from(tags)
+              .where(eq(tags.name, tagName))
+              .orderBy(desc(tags.id))
+              .limit(1);
+            if (createdTag.length === 0) {
+              throw new Error(`Failed to create tag: ${tagName}`);
+            }
+            tag = createdTag[0];
           } else {
             await dbInstance.update(tags).set({
               usageCount: tag.usageCount + 1,
             }).where(eq(tags.id, tag.id));
+          }
+          
+          if (!tag.id) {
+            throw new Error(`Invalid tag ID for tag: ${tagName}`);
           }
           
           await dbInstance.insert(postTags).values({
