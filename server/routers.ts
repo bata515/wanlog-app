@@ -180,14 +180,23 @@ export const appRouter = router({
         const dbInstance = await getDb();
         if (!dbInstance) throw new Error("Database not available");
         
-        const result = await dbInstance.insert(posts).values({
+        await dbInstance.insert(posts).values({
           userId: ctx.user.id,
           title: input.title,
           content: input.content,
           status: input.status,
         });
         
-        const postId = (result as any).insertId;
+        const createdPost = await dbInstance.select().from(posts)
+          .where(eq(posts.userId, ctx.user.id))
+          .orderBy(desc(posts.createdAt))
+          .limit(1);
+        
+        if (!createdPost || createdPost.length === 0) {
+          throw new Error("Failed to create post");
+        }
+        
+        const postId = createdPost[0].id;
         
         // Upload images
         for (let i = 0; i < input.images.length; i++) {
