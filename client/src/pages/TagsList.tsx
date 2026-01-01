@@ -29,8 +29,7 @@ export default function TagsList() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {tags.map((tag) => (
-                <Link key={tag.id} href={`/search?tag=${tag.name}`}>
-                  <a className="card-elegant group">
+                <Link key={tag.id} href={`/search?tag=${tag.name}`} className="card-elegant group block">
                     <div className="flex items-center justify-between mb-3">
                       <h3 className="text-subheading group-hover:text-accent transition-colors">
                         #{tag.name}
@@ -42,7 +41,6 @@ export default function TagsList() {
                     <p className="text-sm text-muted-foreground">
                       {tag.usageCount === 1 ? "1 post" : `${tag.usageCount} posts`}
                     </p>
-                  </a>
                 </Link>
               ))}
             </div>

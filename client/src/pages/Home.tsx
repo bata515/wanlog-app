@@ -12,22 +12,20 @@ export default function Home() {
       {/* Navigation */}
       <nav className="border-b border-border/20 sticky top-0 z-50 bg-background/95 backdrop-blur">
         <div className="container flex items-center justify-between py-4">
-          <Link href="/">
-            <a className="text-2xl font-bold text-display hover:opacity-80 transition-opacity">
-              WanLog
-            </a>
+          <Link href="/" className="text-2xl font-bold text-display hover:opacity-80 transition-opacity">
+            WanLog
           </Link>
           <div className="flex items-center gap-6">
-            <Link href="/tags">
-              <a className="text-label hover:text-accent transition-colors">Tags</a>
+            <Link href="/tags" className="text-label hover:text-accent transition-colors">
+              Tags
             </Link>
             {isAuthenticated ? (
               <>
-                <Link href="/dashboard">
-                  <a className="text-label hover:text-accent transition-colors">Dashboard</a>
+                <Link href="/dashboard" className="text-label hover:text-accent transition-colors">
+                  Dashboard
                 </Link>
-                <Link href="/profile">
-                  <a className="text-label hover:text-accent transition-colors">Profile</a>
+                <Link href="/profile" className="text-label hover:text-accent transition-colors">
+                  Profile
                 </Link>
               </>
             ) : (
@@ -56,16 +54,16 @@ export default function Home() {
 
             <div className="flex gap-4 justify-center pt-4">
               {isAuthenticated ? (
-                <Link href="/posts/create">
-                  <a className="btn-elegant-accent">Create Your First Post</a>
+                <Link href="/posts/create" className="btn-elegant-accent inline-block">
+                  Create Your First Post
                 </Link>
               ) : (
                 <>
                   <a href={getLoginUrl()} className="btn-elegant-accent">
                     Get Started
                   </a>
-                  <Link href="/posts">
-                    <a className="btn-elegant">Explore Posts</a>
+                  <Link href="/posts" className="btn-elegant inline-block">
+                    Explore Posts
                   </Link>
                 </>
               )}
@@ -132,8 +130,8 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/posts">
-              <a className="btn-elegant">View All Stories</a>
+            <Link href="/posts" className="btn-elegant inline-block">
+              View All Stories
             </Link>
           </div>
         </div>
@@ -167,8 +165,8 @@ export default function Home() {
             <div>
               <h4 className="text-label mb-4">Explore</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/posts"><a className="text-muted-foreground hover:text-foreground transition-colors">Stories</a></Link></li>
-                <li><Link href="/tags"><a className="text-muted-foreground hover:text-foreground transition-colors">Tags</a></Link></li>
+                <li><Link href="/posts" className="text-muted-foreground hover:text-foreground transition-colors">Stories</Link></li>
+                <li><Link href="/tags" className="text-muted-foreground hover:text-foreground transition-colors">Tags</Link></li>
               </ul>
             </div>
             <div>

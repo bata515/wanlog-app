@@ -26,8 +26,8 @@ export default function PostsList() {
               <p className="text-muted-foreground">Discover heartwarming tales from our community</p>
             </div>
             {isAuthenticated && (
-              <Link href="/posts/create">
-                <a className="btn-elegant-accent">New Post</a>
+              <Link href="/posts/create" className="btn-elegant-accent inline-block">
+                New Post
               </Link>
             )}
           </div>
@@ -45,16 +45,15 @@ export default function PostsList() {
             <div className="text-center py-12">
               <p className="text-muted-foreground mb-4">No stories yet. Be the first to share!</p>
               {isAuthenticated && (
-                <Link href="/posts/create">
-                  <a className="btn-elegant-accent inline-block">Create Your First Post</a>
+                <Link href="/posts/create" className="btn-elegant-accent inline-block">
+                  Create Your First Post
                 </Link>
               )}
             </div>
           ) : (
             <div className="space-y-6">
               {postsData.posts.map((post) => (
-                <Link key={post.id} href={`/posts/${post.id}`}>
-                  <a className="card-elegant block group">
+                <Link key={post.id} href={`/posts/${post.id}`} className="card-elegant block group">
                     <div className="flex gap-6">
                       <div className="flex-1">
                         <h2 className="text-headline mb-2 group-hover:text-accent transition-colors">
@@ -74,7 +73,6 @@ export default function PostsList() {
                         </div>
                       </div>
                     </div>
-                  </a>
                 </Link>
               ))}
             </div>

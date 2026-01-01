@@ -1,5 +1,5 @@
 import { useAuth } from "@/_core/hooks/useAuth";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -95,6 +95,9 @@ export default function CreatePost() {
       {/* Header */}
       <div className="border-b border-border/20 py-8">
         <div className="container max-w-3xl mx-auto">
+          <Link href="/posts" className="text-label text-muted-foreground hover:text-foreground mb-4 inline-block">
+            ← Back to Stories
+          </Link>
           <h1 className="text-display mb-2">Create New Story</h1>
           <p className="text-muted-foreground">Share a moment with your beloved companion</p>
         </div>

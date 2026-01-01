@@ -56,10 +56,8 @@ export default function PostDetail({ params }: { params: { id: string } }) {
       {/* Header */}
       <div className="border-b border-border/20 py-8">
         <div className="container max-w-3xl mx-auto">
-          <Link href="/posts">
-            <a className="text-label text-muted-foreground hover:text-foreground mb-4 inline-block">
-              ← Back to Stories
-            </a>
+          <Link href="/posts" className="text-label text-muted-foreground hover:text-foreground mb-4 inline-block">
+            ← Back to Stories
           </Link>
           <div className="flex items-start justify-between">
             <div className="flex-1">
@@ -73,10 +71,8 @@ export default function PostDetail({ params }: { params: { id: string } }) {
             </div>
             {isAuthor && (
               <div className="flex gap-2">
-                <Link href={`/posts/${post.id}/edit`}>
-                  <a className="btn-elegant p-2">
-                    <Edit className="w-4 h-4" />
-                  </a>
+                <Link href={`/posts/${post.id}/edit`} className="btn-elegant p-2 inline-block">
+                  <Edit className="w-4 h-4" />
                 </Link>
                 <button
                   onClick={() => {
@@ -133,10 +129,8 @@ export default function PostDetail({ params }: { params: { id: string } }) {
             <div className="mb-12 pb-12 border-b border-border/20">
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <Link key={tag.tagId} href={`/tags/${tag.tagId}`}>
-                    <a className="inline-block px-3 py-1 bg-card border border-border/20 text-sm hover:border-accent transition-colors">
-                      #{tag.tagId}
-                    </a>
+                  <Link key={tag.tagId} href={`/tags/${tag.tagId}`} className="inline-block px-3 py-1 bg-card border border-border/20 text-sm hover:border-accent transition-colors">
+                    #{tag.tagId}
                   </Link>
                 ))}
               </div>

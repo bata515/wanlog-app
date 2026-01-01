@@ -91,3 +91,6 @@
 - [ ] 投稿の共有機能
 - [ ] 高度な分析・統計機能
 - [ ] 管理者機能
+
+## バグ修正
+- [x] ネストされた<a>タグエラー修正（Home、PostsList、PostDetail、TagsList、SearchResults、CreatePost）

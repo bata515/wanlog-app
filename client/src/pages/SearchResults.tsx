@@ -52,8 +52,7 @@ export default function SearchResults() {
           ) : (
             <div className="space-y-6">
               {results.posts.map((post) => (
-                <Link key={post.id} href={`/posts/${post.id}`}>
-                  <a className="card-elegant block group">
+                <Link key={post.id} href={`/posts/${post.id}`} className="card-elegant block group">
                     <div className="flex gap-6">
                       <div className="flex-1">
                         <h2 className="text-headline mb-2 group-hover:text-accent transition-colors">
@@ -73,7 +72,6 @@ export default function SearchResults() {
                         </div>
                       </div>
                     </div>
-                  </a>
                 </Link>
               ))}
             </div>
