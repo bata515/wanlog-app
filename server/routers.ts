@@ -94,11 +94,28 @@ export const appRouter = router({
           }
         }
         
-        await dbInstance.update(users).set({
+        let profileImageUrl: string | undefined = undefined;
+        if (input.profileImage && input.profileImage.length > 0) {
+          try {
+            const imageBuffer = Buffer.from(input.profileImage, 'base64');
+            const fileKey = `profile-images/${ctx.user.id}-${Date.now()}.jpg`;
+            const result = await storagePut(fileKey, imageBuffer, 'image/jpeg');
+            profileImageUrl = result.url;
+          } catch (error) {
+            console.error('Failed to upload profile image:', error);
+            throw new Error('Failed to upload profile image');
+          }
+        }
+        
+        const updateData: any = {
           username: input.username,
           bio: input.bio,
-          profileImage: input.profileImage,
-        }).where(eq(users.id, ctx.user.id));
+        };
+        if (profileImageUrl) {
+          updateData.profileImage = profileImageUrl;
+        }
+        
+        await dbInstance.update(users).set(updateData).where(eq(users.id, ctx.user.id));
         
         return { success: true };
       }),
